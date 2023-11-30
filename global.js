@@ -33,14 +33,25 @@ const questions = [
 
 const answers = [];
 
-function ask(i) {
+function ask(i = 0) {
     process.stdout.write(`\n\n\n ${questions[i]}`);
     process.stdout.write(` > `);
 }
 
+ask();
+
 // here we are using process.stdin to get the data from the user using event "on"
 process.stdin.on("data", (data) => {
-    process.stdout.write(data.toString().trim() + "\n");
+    answers.push(data.toString().trim() + "\n");
+    if (answers.length < questions.length) {
+        ask(answers.length);
+    } else {
+        process.exit();
+    }
 })
 
-ask(answers.length);
+process.on("exit", () => {
+    process.stdout.write("\n\n\n");
+    process.stdout.write("Thank you for your answers\n");
+    process.stdout.write(answers.join(""));
+})
