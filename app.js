@@ -1,4 +1,11 @@
-const myModule = require("./module");
+const { inc, dec, getCount} = require("./module");
 
-console.log(myModule.who);
-console.log(myModule.anything);
+inc();
+inc();
+inc();
+
+console.log(`thecount is ${getCount()} \n`);
+
+dec();
+
+console.log(`thecount is ${getCount()}`);
