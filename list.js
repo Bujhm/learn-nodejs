@@ -1,5 +1,7 @@
 const fs = require("fs");
 
-let ipsum = fs.readFileSync("./README.md", "utf8");
+fs.readFile("./README.md", "utf8", (err, ipsum) => {
+    console.log(ipsum);
+});
 
-console.log(ipsum);
+console.log("reading the file ...");
